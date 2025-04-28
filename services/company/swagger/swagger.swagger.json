@@ -1,0 +1,454 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "company.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Company"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/companies": {
+      "get": {
+        "operationId": "Company_Companies",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetCompaniesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/companies/{companyId}": {
+      "get": {
+        "operationId": "Company_Company",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetCompanyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/companies/{companyId}/issues": {
+      "get": {
+        "operationId": "Company_CompanyIssues",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetIssuesOfCompanyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/issues/{issueId}": {
+      "get": {
+        "operationId": "Company_Issue",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetIssueResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      },
+      "post": {
+        "operationId": "Company_AssignDeveloper",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compAssignDeveloperResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/issues/{issueId}/solutions": {
+      "get": {
+        "operationId": "Company_IssueSolutions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetSolutionsOfIssueResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/issues/{issueId}/solutions/{solutionId}": {
+      "get": {
+        "operationId": "Company_IssueSolution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compGetIssueSolutionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "solutionId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    },
+    "/v1/issues/{issueId}/submit": {
+      "post": {
+        "operationId": "Company_SubmitSolution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/compSubmitSolutionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "solutionText",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Company"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "compAssignDeveloperResponse": {
+      "type": "object",
+      "properties": {
+        "assignmentId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "compCompanies": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        }
+      }
+    },
+    "compGetCompaniesResponse": {
+      "type": "object",
+      "properties": {
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/compCompanies"
+          }
+        }
+      }
+    },
+    "compGetCompanyGithubIntegrationResponse": {
+      "type": "object",
+      "properties": {
+        "installationId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "compGetCompanyResponse": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "websiteUrl": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "compGetIssueResponse": {
+      "type": "object",
+      "properties": {
+        "issueId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "assignmentStatus": {
+          "type": "string"
+        },
+        "solutionText": {
+          "type": "string"
+        },
+        "solutionStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "compGetIssueSolutionResponse": {
+      "type": "object",
+      "properties": {
+        "solutionId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "assignmentId": {
+          "type": "string",
+          "format": "int64"
+        },
+        "solutionText": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "assignedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "compGetIssuesOfCompanyResponse": {
+      "type": "object",
+      "properties": {
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/compGetIssueResponse"
+          }
+        }
+      }
+    },
+    "compGetSolutionsOfIssueResponse": {
+      "type": "object",
+      "properties": {
+        "solutions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/compGetIssueSolutionResponse"
+          }
+        }
+      }
+    },
+    "compSubmitSolutionResponse": {
+      "type": "object",
+      "properties": {
+        "solutionId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
