@@ -1,0 +1,118 @@
+/* Общий контейнер */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* Карточка */
+.card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    text-align: center;
+}
+
+/* Заголовок */
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* Текстовое описание */
+.text {
+    font-size: 14px;
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+}
+
+/* Поле ввода */
+.input {
+    margin: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    text-align: center;
+    border: 2px solid var(--background-color);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.input:focus {
+    border-color: var(--secondary-color);
+}
+
+/* Успешное сообщение */
+.success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2d9c57;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Ошибка */
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e53e3e;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* Иконки */
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Кнопка подтверждения */
+.button {
+    margin: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #357ab7;
+}
+
+/* Контейнер для повторной отправки */
+.resendContainer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Кнопка повторной отправки */
+.resendButton {
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.resendButton:hover {
+    color: #4a5568;
+}

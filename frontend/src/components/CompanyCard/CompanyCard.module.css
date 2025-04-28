@@ -1,0 +1,61 @@
+.companyCard {
+    width: 15rem;
+    margin: 0 auto; /* Центрирует карточку */
+    background: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: left;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.companyCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.companyImage {
+    max-width: 100%;  /* ограничиваем ширину до размера контейнера */
+    max-height: 150px; /* ограничиваем высоту до 150px */
+    width: auto;      /* ширина подстраивается автоматически */
+    height: auto;     /* высота подстраивается автоматически */
+    object-fit: cover; /* или contain, в зависимости от желаемого эффекта */
+    border-radius: 8px;
+}
+
+
+.companyContent {
+    display: flex;
+    width: 100%;
+    margin-top: auto; /* Отодвигает блок вниз */
+}
+.companyHeader {
+    margin-top: auto; /* Отодвигает блок вниз */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Дополнительные стили, например, фон, паддинг и т.п. */
+}
+
+.companyIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.companyName {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.companyDescription {
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+}

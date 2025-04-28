@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+package auth;
+
+import "google/api/annotations.proto";
+
+
+option go_package = "tp.auth.v1.;authv1";
+
+service Auth{
+
+  rpc Register(RegisterRequest) returns (RegisterResponse){
+    option (google.api.http) = {
+      post: "/v1/signup"
+      body: "*"
+    };
+  }
+
+
+  rpc RegisterConfirm(RegisterConfirmRequest) returns (RegisterConfirmResponse){
+    option (google.api.http) = {
+      post: "/v1/signup/confirm"
+      body: "*"
+    };
+  }
+
+  rpc Login(LoginRequest) returns (LoginResponse){
+    option (google.api.http) = {
+      post: "/v1/login"
+      body: "*"
+    };
+  }
+
+  rpc UserInfo(UserInfoRequest) returns (UserInfoResponse){
+    option (google.api.http) = {
+      post: "/v1/api/me"
+      body: "*"
+    };
+  }
+
+  rpc IsTokenValid(IsTokenValidRequest) returns (IsTokenValidResponse);
+
+  rpc IsGithubLinked(IsGithubLinkedRequest) returns (IsGithubLinkedResponse);
+
+  rpc LinkGithubAccount(LinkGithubRequest) returns (LinkGithubResponse){
+    option (google.api.http) = {
+      post: "/v1/profile/github"
+      body: "*"
+    };
+  }
+
+  rpc UnlinkGithubAccount(UnlinkGithubRequest) returns (UnlinkGithubResponse){
+    option (google.api.http) = {
+      delete: "/v1/profile/github"
+    };
+  }
+
+  rpc DeveloperProfile(GetDeveloperProfileRequest) returns (GetDeveloperProfileResponse){
+    option (google.api.http) = {
+      get: "/v1/profile/{devID}"
+    };
+  }
+}
+
+message RegisterRequest{
+  string email = 1;
+  string password = 2;
+  string username = 3;
+}
+
+message RegisterResponse{
+  int64 userID = 1; // request to confirm email address
+}
+
+message RegisterConfirmRequest{
+  string email = 1;
+  string otp = 2;
+}
+
+message RegisterConfirmResponse{
+  bool success = 1;
+  string message = 2;
+}
+
+message LoginRequest{
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse{
+  string token = 1;
+}
+
+message UserInfoRequest{
+}
+
+message UserInfoResponse{
+  int64 user_id = 1;
+  string username = 2;
+  string email = 3;
+  string role = 4;
+  int64 company_id = 5;
+}
+
+message IsTokenValidRequest{
+  string token = 1;
+}
+
+message IsTokenValidResponse{
+  bool isTokenValid = 1;
+}
+
+
+
+////////////////////////////////   Github OAuth   ////////////////////////////////
+
+message LinkGithubRequest{
+  string github_code = 1;
+}
+
+message LinkGithubResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UnlinkGithubRequest {
+}
+
+message UnlinkGithubResponse {
+  bool success = 1;
+}
+
+message IsGithubLinkedRequest{
+  int64 devID = 1;
+}
+
+message IsGithubLinkedResponse{
+  bool isGithubLinked = 1;
+}
+
+
+////////////////////////////////   Profile   ////////////////////////////////
+
+message GetDeveloperProfileRequest{
+  int64 devID = 1;
+}
+
+message GetDeveloperProfileResponse{
+  bool isGithubLinked = 1;
+  string username = 2;
+  string github_username = 3;
+  string avatar_url = 4;
+  string cv_url = 5;
+  string bio = 6;
+  string email = 7;
+//  google.protobuf.Timestamp created_at = 8;
+}

@@ -1,0 +1,246 @@
+.container {
+    min-height: 100vh;
+}
+
+/* Первая секция */
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 1rem;
+}
+
+.heroTitle {
+    font-size: 9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+    font-size: 1.25rem;
+    color: var(--text-color);
+}
+
+/* Вторая секция */
+.aboutSection {
+    background: linear-gradient(to top, #0a2351, var(--background-color));
+    min-height: 100vh;
+    /* Добавляем flex для вертикального центрирования */
+    display: flex;
+    align-items: center;
+}
+
+.aboutContainer {
+    background-color: var(--secondary-color);
+    border-radius: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    color: var(--accent-color);
+    flex-direction: column;
+    /* Убираем margin, так как центрирование обеспечивает родительский элемент */
+    height: 100%;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .aboutContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.aboutText {
+    width: 100%;
+    padding: 2rem;
+}
+
+@media (min-width: 768px) {
+    .aboutText {
+        width: 50%;
+    }
+}
+
+.aboutTitle {
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.aboutDescription {
+    font-size: 1.125rem;
+}
+
+.aboutImage {
+    width: 100%;
+    padding: 2rem;
+}
+
+@media (min-width: 768px) {
+    .aboutImage {
+        width: 50%;
+    }
+}
+
+.aboutImage img {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Третья секция */
+.cardsSection {
+    background: linear-gradient(to bottom, #0a2351, var(--background-color));
+
+    padding: 4rem 0;
+    overflow: hidden;
+}
+
+/* Контейнер карусели */
+.sliderContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Полоса с карточками */
+.cardsSlider {
+    width: 100%;
+    overflow-x: auto; /* Горизонтальный скролл */
+    scroll-snap-type: x mandatory; /* Прокрутка фиксируется по карточкам */
+    display: flex;
+    justify-content: center;
+    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
+    -ms-overflow-style: none; /* Скрываем скроллбар в IE/Edge */
+}
+.cardsSlider::-webkit-scrollbar {
+    display: none;
+}
+
+/* Анимация бесконечного движения */
+.cardsTrack {
+    display: flex;
+    align-items: center; /* Центрируем карточки по вертикали */
+    justify-content: center; /* Если нужно центрировать по горизонтали */
+    width: auto; /* Автоширина для адаптации под контент */
+    animation: scroll 20s linear infinite;
+    gap: 1rem; /* Добавляет отступы между карточками */
+
+}
+
+/* Останавливаем анимацию при наведении */
+.cardsTrack:hover {
+    animation-play-state: paused;
+}
+
+/* Карточки */
+.cardWrapper {
+    flex: 0 0 calc(100% / 6);
+    background-color: var(--secondary-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 0 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 10px; /* Задаем фиксированную ширину */
+    height: 170px; /* Уменьшаем высоту */
+    display: flex;
+    align-items: center; /* Центрируем контент внутри карточки */
+    justify-content: center;
+}
+
+/* Анимация движения */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Кнопки навигации */
+.navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.navButton:hover {
+    background-color: #f3f4f6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prevButton {
+    left: -20px;
+}
+
+.nextButton {
+    right: -20px;
+}
+
+/* CSS для стрелок */
+.arrowLeft,
+.arrowRight {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+}
+
+.arrowLeft {
+    transform: rotate(135deg);
+}
+
+.arrowRight {
+    transform: rotate(-45deg);
+}
+
+/* Медиа-запросы */
+@media (max-width: 1024px) {
+    .cardWrapper {
+        flex: 0 0 calc(33.333% - 1.33rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .cardWrapper {
+        flex: 0 0 calc(100% - 1rem);
+    }
+
+    .navButton {
+        width: 32px;
+        height: 32px;
+    }
+
+    .arrowLeft,
+    .arrowRight {
+        width: 8px;
+        height: 8px;
+    }
+
+    .cardsTrack {
+        animation-duration: 15s;
+    }
+}

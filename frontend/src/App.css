@@ -1,0 +1,48 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+:root {
+  --primary-color: white;  /* Основной цвет */
+  --secondary-color: #1E1E1E; /* Вторичный */
+  --accent-color: #4A90E2 ;    /* Акцентный цвет */
+  --text-color: #E0E0E0 ;      /* Цвет текста */
+  --background-color: #121212 ; /* Фон */
+  --dark-gray: #B0B0B0 ;       /* Дополнительный темный цвет */
+}
+
+/* Темная тема (если нужно) */
+[data-theme="dark"] {
+  --primary-color: #190061;
+  --secondary-color: #0C0032;
+  --accent-color: #3500D3;
+  --text-color: #f5f5f5;
+  --background-color: #282828;
+}
+
+/* Глобальные стили */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+
+
+/* Кнопки */
+.button {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+}
+
+
+
+

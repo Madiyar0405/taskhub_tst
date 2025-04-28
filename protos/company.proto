@@ -1,0 +1,181 @@
+syntax = "proto3";
+
+package comp;
+
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+
+
+
+option go_package = "tp.comp.v1.;compv1";
+
+service Company{
+  rpc Company(GetCompanyRequest) returns (GetCompanyResponse){
+    option (google.api.http) = {
+      get: "/v1/companies/{company_id}"
+    };
+  }
+
+  rpc Companies(GetCompaniesRequest) returns (GetCompaniesResponse){
+    option (google.api.http) = {
+      get: "/v1/companies"
+    };
+  }
+
+
+  rpc Issue(GetIssueRequest) returns (GetIssueResponse){
+    option (google.api.http) = {
+      get: "/v1/issues/{issue_id}"
+    };
+  }
+
+  rpc CompanyIssues(GetIssuesOfCompanyRequest) returns (GetIssuesOfCompanyResponse){
+    option (google.api.http) = {
+      get: "/v1/companies/{company_id}/issues"
+    };
+  }
+
+  rpc AssignDeveloper(AssignDeveloperRequest) returns (AssignDeveloperResponse){
+    option (google.api.http) = {
+      post: "/v1/issues/{issue_id}"
+    };
+  }
+
+  rpc SubmitSolution(SubmitSolutionRequest) returns (SubmitSolutionResponse){
+    option (google.api.http) = {
+      post: "/v1/issues/{issue_id}/submit"
+      body: "solution_text"
+    };
+  }
+
+  rpc IssueSolutions(GetSolutionsOfIssueRequest) returns (GetSolutionsOfIssueResponse){
+    option (google.api.http) = {
+      get: "/v1/issues/{issue_id}/solutions"
+    };
+  }
+
+  rpc IssueSolution(GetIssueSolutionRequest) returns (GetIssueSolutionResponse){
+    option (google.api.http) = {
+      get: "/v1/issues/{issue_id}/solutions/{solution_id}"
+    };
+  }
+
+  rpc CompanyGithubIntegration(GetCompanyGithubIntegrationRequest) returns (GetCompanyGithubIntegrationResponse);
+
+    }
+
+
+
+// ISSUES //
+
+message GetIssuesOfCompanyRequest{
+  int64 company_id = 1;
+}
+
+message GetIssuesOfCompanyResponse{
+  repeated GetIssueResponse issues = 1;
+}
+
+
+
+message GetIssueRequest{
+  int64 issue_id = 1;
+}
+
+message GetIssueResponse{
+  int64 issue_id = 1;
+  string title = 2;
+  string body = 3;
+  string assignment_status = 4;
+  string solution_text = 5;
+  string solution_status = 6;
+}
+
+
+message AssignDeveloperRequest{
+  int64 issue_id = 1;
+}
+
+message AssignDeveloperResponse{
+  int64 assignment_id = 1;
+}
+
+message SubmitSolutionRequest{
+  int64 issue_id = 1;
+  string solution_text = 2;
+}
+
+message SubmitSolutionResponse{
+  int64 solution_id = 1;
+}
+
+message GetSolutionsOfIssueRequest{
+  int64 issue_id = 1;
+}
+
+message GetSolutionsOfIssueResponse{
+  repeated GetIssueSolutionResponse solutions = 1;
+}
+
+message GetIssueSolutionRequest{
+  int64 issue_id = 1;
+  int64 solution_id = 2;
+}
+
+message GetIssueSolutionResponse{
+  int64 solution_id = 1;
+  int64 assignment_id = 2;
+  string solution_text = 3;
+  string status = 4;
+  google.protobuf.Timestamp assigned_at = 5;
+  google.protobuf.Timestamp completed_at = 6;
+}
+
+
+// END OF ISSUES //
+
+
+// LIST OF COMPANIES //
+
+message GetCompaniesRequest{
+}
+
+message GetCompaniesResponse{
+  repeated Companies companies = 1;
+}
+
+message Companies{
+  int64 company_id = 1;
+  string company_name = 2;
+  string logo = 3;
+}
+
+// END OF LIST OF COMPANIES //
+
+
+message GetCompanyRequest{
+  int64 company_id = 1;
+}
+
+message GetCompanyResponse{
+  int64 company_id = 1;
+  string company_name = 2;
+  string description = 3;
+  string website_url = 4;
+  string logo = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+////////////////////
+
+
+
+message GetCompanyGithubIntegrationRequest{
+  int64 company_id = 1;
+}
+
+message GetCompanyGithubIntegrationResponse{
+  int64 installation_id = 1;
+}
